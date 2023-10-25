@@ -1,0 +1,10 @@
+FROM alpine:latest
+
+RUN apk add --update --no-cache nginx
+
+COPY assemble-runtime run /app/
+
+LABEL io.k8s.description="nginx" \
+      io.k8s.dosplay-name="nginx" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.s2i.scripts-url="image:///app"
